@@ -17,3 +17,12 @@ in case sqlite throws error, run the below migration in terminal:
 - dotnet ef database update --project BlockCypher.Persistence --startup-project src/BlockCypher.Api
 - dotnet ef migrations list --project BlockCypher.Persistence
 
+## Run
+- in project root, run the command: docker-compose up
+- swagger url: http://localhost:8080/swagger/index.html
+
+## License
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+This project is open source and available under the [MIT License](LICENSE).
