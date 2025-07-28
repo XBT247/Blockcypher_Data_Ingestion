@@ -11,4 +11,8 @@
 - Docker Compose: API and persistent SQLite
 - Unit/integration tests
 
-## Quick Start
+in case sqlite throws error, run the below migration in terminal:
+dotnet ef migrations add InitialCreate --project BlockCypher.Persistence --startup-project src/BlockCypher.Api
+dotnet ef database update --project BlockCypher.Persistence --startup-project src/BlockCypher.Api
+dotnet ef migrations list --project BlockCypher.Persistence
+
