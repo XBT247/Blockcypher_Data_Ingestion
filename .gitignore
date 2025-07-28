@@ -1,0 +1,10 @@
+bin/
+obj/
+.vs/
+.env
+*.db
+*.sqlite
+*.suo
+*.user
+*.DS_Store
+TestResults/

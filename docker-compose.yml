@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  blockcypher-api:
+    build:
+      context: .
+      dockerfile: src/BlockCypher.Api/Dockerfile
+    ports:
+      - "8080:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - BLOCKCYPHER_TOKEN=7f1843350cd94b4ab9e1569f8acb7cb6
+      - BLOCKCYPHER_POLL_INTERVAL_MINUTES=5
+      - ConnectionStrings__DefaultConnection=Data Source=/data/blockcypher.db
+    volumes:
+      - blockcypher_data:/data
+    depends_on:
+      - migrate
+
+  migrate:
+    image: mcr.microsoft.com/dotnet/sdk:9.0
+    working_dir: /app
+    volumes:
+      - ./:/app
+      - blockcypher_data:/data
+    entrypoint: [ "dotnet", "ef", "database", "update", "--project", "src/BlockCypher.Api/BlockCypher.Api.csproj" ]
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=your_connection_string
+
+volumes:
+  blockcypher_data:
